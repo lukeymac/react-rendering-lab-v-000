@@ -1,13 +1,17 @@
 import React from 'react';
 
-class Animation extends React.Component {
+export default class Animation extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       url: ' http://placehold.it/500x150'
     };
+  }
+
+  componentWillUpdate() {
+    this.showLoadingBar();
   }
 
   getNewCat = () => {
@@ -19,7 +23,7 @@ class Animation extends React.Component {
           return res.json()
         }
       })
-      .then(result => this.setState({ 
+      .then(result => this.setState({
         url: result.data.fixed_height_downsampled_url
       }));
   }
@@ -39,5 +43,3 @@ class Animation extends React.Component {
     )
   }
 }
-
-export default Animation;
